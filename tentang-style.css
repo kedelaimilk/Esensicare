@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("bg-profil.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    text-decoration: overline 10px;
+    text-decoration-color: darkred;
+    padding: 10px 0;
+    font-family: 'Sriracha', cursive;
+}
+
+.profile-section {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 20px;
+    margin-top: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+    text-align: justify;
+    font-size: 20px;
+    margin-left: 30px;
+    color: white;
+}
+
+img {
+    margin-left: 20px;
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+footer {
+    background-color: #333;
+    font-size: 13px;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+h1 {
+    margin: 0;
+}
+
+h2 {
+    margin: 0;
+    font-family: 'Satisfy', cursive;
+}
+
+p {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    ;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-left: 20px;
+    font-size: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.cta-button:hover {
+    background-color: black;
+    transition: 0.5s;
+}
