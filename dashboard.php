@@ -15,6 +15,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="tentang-style.css">
+    <style>button {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-left: 20px;
+    font-size: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: black;
+    transition: 0.5s;
+}</style>
 </head>
 
 <body>
@@ -39,9 +54,11 @@
         </div>
     </section>
 
-    <a href="index.php">
-        <div class="cta-button">Back</div>
-    </a>
+    <form class="logout-btn"action="dashboard.php" method="POST">
+        <button type="submit" name="logout">logout</button>
+    </form>
+
+    
     <footer>
         <p>&copy; 2023 KedelaiMilk</p>
     </footer>
