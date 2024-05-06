@@ -165,26 +165,6 @@
 
     <!-- Footer END -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Fetaher Icons -->
     <script>
         feather.replace();
