@@ -23,6 +23,20 @@
         rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="index-style.css">
+    <style>button {
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 15px;
+    background-color: red;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: black;
+    transition: 0.5s;
+}</style>
 
 </head>
 
@@ -52,7 +66,10 @@
                 lainnya yang
                 melihat bahwa dunia saat ini mengharuskan setiap orang untuk menjadi changemaker – seseorang yang
                 melihat dirinya mampu menciptakan perubahan positif dalam skala besar.</p>
-            <a href="login.php" class="cta">Kepoin Developer</a>
+            <form class="logout-btn"action="login.php" method="POST">
+                <button type="submit" name="logout">logout</button>
+            </form>
+
 
         </main>
 

@@ -4,7 +4,7 @@
 
 
     if(isset($_SESSION["is_login"])) {
-        header("location: dashboard.php");
+        header("location: index.php");
     }
     if(isset($_POST['login'])){
         $username = $_POST['username'];
@@ -21,7 +21,7 @@
         $_SESSION["username"] = $data ["username"];
         $_SESSION["is_login"] = true;
         
-        header("location: dashboard.php");
+        header("location: index.php");
 
     }else {
         echo "<script> alert(' Akun tidak ditemukan, silahkan coba lagi ')</script>";
