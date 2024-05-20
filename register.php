@@ -1,56 +1,58 @@
 <?php
-    include "koneksi db/database.php";
-    session_start();
-
-
-    if(isset($_SESSION["is_login"])) {
-        header("location: halaman.php");
-    }
-
-    if(isset($_POST["register"])){
-        $username = $_POST["username"];
-        $password = $_POST["password"];
-        $email = $_POST["email"];
-        $hash_password = hash("sha256", $password);
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Include database connection
+    include('koneksi db/database.php');
     
-        try {
-            $sql = "INSERT INTO user (username, password, email) VALUES ('$username', '$hash_password', '$email')";
-
-            if($db->query($sql)) {
-                echo "<script> alert('Daftar akun berhasil, silahkan login')</script>";
-            }else{
-                echo "<script> alert('Daftar akun gagal, silahkan coba lagi')</script>";
-            }
-        }catch (mysqli_sql_exception) {
-                echo "<script> alert('Akun sudah digunakan, silahkan coba lagi ')</script>";
-        }
-        $db->close();
-        
+    // Get form data
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $role = $_POST['role'];
+    
+    // Insert user data into database
+    $query = "INSERT INTO users (username, role, password) VALUES ('$username', '$role', '$password')";
+    $result = mysqli_query($db, $query);
+    
+    if ($result) {
+        echo "Registration successful!";
+    } else {
+        echo "<script> alert(' Akun sudah digunakan, silahkan coba lagi ')</script>";
     }
+    
+    // Close database connection
+    mysqli_close($db);
+}
 ?>
- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/register-style.css">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multiuser Registration Form</title>
+<link rel="stylesheet" href="css/register-style.css">
 </head>
 <body>
-    
-<div class="main-register">
-    <h3>Daftar Akun</h3>
-    <form action="register.php" method="POST">
-        <input type="text" placeholder="Username" name="username" required>
-        <br>
-        <input type="password" placeholder="Password" name="password" required>
-        <br>
-        <input type="email" placeholder="Email" name="email" required>
-        <button type="submit" name="register">Daftar Sekarang</button required>
-        <p class="message">Sudah punya akun? <a href="login.php">Masuk</a></p>
+<div class="container">
+    <h2>Register</h2>
+    <form action="register.php" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="role">Role:</label>
+        <select id="role" name="role" required>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+        </select>
+
+        <input type="submit" value="Register">
     </form>
 </div>
 
 </body>
 </html>
+
+

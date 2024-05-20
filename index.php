@@ -23,6 +23,22 @@
         rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="index-style.css">
+    <style>
+        button {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 15px;
+    background-color: red;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: black;
+    transition: 0.5s;
+}
+    </style>
 
 </head>
 
@@ -35,6 +51,7 @@
             <a href="#about">Tentang kami</a>
             <a href="#layanan">Layanan</a>
             <a href="#contact">Kontak</a>
+            <a class="link-donasi" href="donasi.php">Donasi</a>
         </div>
 
         <div class="navbar-extra">
@@ -52,7 +69,7 @@
                 lainnya yang
                 melihat bahwa dunia saat ini mengharuskan setiap orang untuk menjadi changemaker – seseorang yang
                 melihat dirinya mampu menciptakan perubahan positif dalam skala besar.</p>
-            <form class="logout-btn"action="login.php" method="POST">
+            <form class="logout-btn"action="index.php" method="POST">
                 <button type="submit" name="logout">logout</button>
             </form>
 
