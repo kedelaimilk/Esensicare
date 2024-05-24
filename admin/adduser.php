@@ -16,9 +16,7 @@ if (isset($_POST["submit"])) {
     $result = mysqli_query($db, $query);
 
     if ($result) {
-        echo "<script>
-                alert('Data berhasil ditambahkan!');
-             </script>";
+       header("location:index.php");
     } else {
         echo "<script>
                 alert('Data gagal ditambahkan!');

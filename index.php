@@ -1,10 +1,10 @@
 <?php
     session_start();
 
-    if(isset($_POST['logout'])) {
-        session_unset();
-        session_destroy();
-        header('location: login.php');
+    if (!isset($_SESSION["login"])) {
+        header("Location:login.php");
+
+        exit;
     }
 
 ?>
@@ -23,22 +23,6 @@
         rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="index-style.css">
-    <style>
-        button {
-    display: inline-block;
-    padding: 10px 15px;
-    font-size: 15px;
-    background-color: red;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: black;
-    transition: 0.5s;
-}
-    </style>
 
 </head>
 
@@ -50,7 +34,8 @@ button:hover {
             <a href="#">Beranda</a>
             <a href="#about">Tentang kami</a>
             <a href="#layanan">Layanan</a>
-            <a href="#contact">Kontak</a>
+            <a href="#contact">Kontak Admin</a>
+            <a href="tentang-saya.php">Profil</a>
             <a class="link-donasi" href="donasi.php">Donasi</a>
         </div>
 
@@ -64,13 +49,18 @@ button:hover {
 
     <section class="hero">
         <main class="content">
-            <h1>Selamat datang di esensi<span>care</span></h1>
+            <h1>Selamat datang di esensi<span>care 
+                
+                </span>
+                <?= $_SESSION['username']; ?>!
+            </h1>
+            
             <p> Esensicare membangun dan membina komunitas Fellows, Young Changemakers, Changemaker Institutions, dan
                 lainnya yang
                 melihat bahwa dunia saat ini mengharuskan setiap orang untuk menjadi changemaker – seseorang yang
                 melihat dirinya mampu menciptakan perubahan positif dalam skala besar.</p>
-            <form class="logout-btn"action="index.php" method="POST">
-                <button type="submit" name="logout">logout</button>
+            <form class="logout-btn"action="" method="POST">
+                
             </form>
 
         </main>
@@ -134,6 +124,47 @@ button:hover {
 
     <!-- Contact section START -->
     <section id="contact" class="contact">
+    <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Memastikan tidak ada input yang kosong
+    if (empty($_POST['nama']) || empty($_POST['email']) || empty($_POST['telepon'])) {
+        
+    } else {
+        // Mengambil data dari formulir
+        $nama = $_POST['nama'];
+        $email = $_POST['email'];
+        $telepon = $_POST['telepon'];
+        $kritik = $_POST['kritik'];
+
+        // Koneksi ke database
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "login";
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Memeriksa koneksi
+        if ($conn->connect_error) {
+            die("Koneksi gagal: " . $conn->connect_error);
+        }
+
+        // Menyimpan data ke dalam tabel
+        $sql = "INSERT INTO kontak (nama, email, telepon, kritik) VALUES ('$nama', '$email', '$telepon', '$kritik')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Data berhasil dikirim";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+        $conn->close();
+    }
+}
+?>
+
+
+
     <h2><span>Kontak</span></h2>
         <p>Esensicare</p>
 
@@ -141,20 +172,24 @@ button:hover {
         <div class="row">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1978.0036325407234!2d112.7241299953734!3d-7.464446452997032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e7b9fade7dc1%3A0x807e53298798480a!2sPerumahan%20Pesona%20Sekar%20Gading!5e0!3m2!1sid!2sid!4v1709212749893!5m2!1sid!2sid"allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
 
-            <form action="">
+            <form action="" method="POST">
                 <div class="input-group">
                     <i data-feather="user"></i>
-                    <input type="text" placeholder="Nama">
+                    <input type="text" placeholder="Nama" name="nama" required>
                 </div>
                 <div class="input-group">
                     <i data-feather="mail"></i>
-                    <input type="mail" placeholder="Email">
+                    <input type="mail" placeholder="Email" name="email" required>
                 </div>
                 <div class="input-group">
                     <i data-feather="phone"></i>
-                    <input type="text" placeholder="No.HP">
+                    <input type="text" placeholder="No.HP" name="telepon" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="Kritik & Saran" name="kritik" required>
                 </div>
                 <button type="submit" class="btn">Kirim pesan</button>
+                <button type="" name="logout"><a href="logout.php">Logout</a></button>
             </form>
         </div>
     </section>
@@ -165,14 +200,14 @@ button:hover {
 
     <footer>
         <div class="socials">
-            <a href="#"><i data-feather="instagram"></i></a>
-            <a href="#"><i data-feather="twitter"></i></a>
-            <a href="#"><i data-feather="facebook"></i></a>
+            <a href="https://www.instagram.com/nirrvanaan/" target="blank"><i data-feather="instagram" ></i></a>
+            <a href="https://x.com/andriaaanst" target="blank"><i data-feather="twitter" ></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100012790360821" target="blank"><i data-feather="facebook"></i></a>
         </div>
 
         <div class="links">
             <a href="#">Home</a>
-            <a href="#about">Tentang kami</a>
+            <a href="tentang-saya.php">Tentang kami</a>
             <a href="#layanan">Layanan</a>
             <a href="#contact">Kontak</a>
         </div>
@@ -193,7 +228,7 @@ button:hover {
 
 
 
-
+<img src="" alt="">
 
 
 

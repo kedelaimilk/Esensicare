@@ -12,22 +12,14 @@ body {
     background-position: center;
 }
 
-header {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    text-align: center;
-    text-decoration: overline 10px;
-    text-decoration-color: darkred;
-    padding: 10px 0;
-    font-family: 'Sriracha', cursive;
-}
+
 
 .profile-section {
     display: flex;
     justify-content: left;
     align-items: center;
     margin: 20px;
-    margin-top: 40px;
+    margin-top: 20vh;
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: rgba(0, 0, 0, 0.5);
