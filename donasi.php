@@ -13,7 +13,7 @@ if ( isset ($_POST["submit"])) {
     $query = "INSERT INTO donatur (nama, email, telepon, alamat, jumlah_donasi, metode_pembayaran) VALUES ('$nama', '$email', '$telepon', '$alamat', '$jumlah_donasi', '$metode_pembayaran')";
 
     if (mysqli_query($db, $query)) {
-        echo "Donasi berhasil disimpan.";
+        echo "Terimakasih telah berdonasi";
     } else {
         echo "Error: " . $query . "<br>" . mysqli_error($db);
     }
