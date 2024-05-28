@@ -1,16 +1,21 @@
 <?php
-// Pastikan file koneksi.php sudah sesuai dengan konfigurasi MySQL Anda
+session_start(); // Mulai sesi di awal file
 require ('koneksi db/database.php');
 
-if ( isset ($_POST["submit"])) {
+if (isset($_POST["submit"])) {
+    if (!isset($_SESSION['user_id'])) {
+        die("User ID tidak ditemukan di sesi.");
+    }
+
     $nama = $_POST['nama'];
     $email = $_POST['email'];
     $telepon = $_POST['telepon'];
     $alamat = $_POST['alamat'];
     $jumlah_donasi = $_POST['jumlah_donasi'];
     $metode_pembayaran = $_POST['metode_pembayaran'];
+    $user_id = $_SESSION['user_id']; // Ambil user_id dari sesi
 
-    $query = "INSERT INTO donatur (nama, email, telepon, alamat, jumlah_donasi, metode_pembayaran) VALUES ('$nama', '$email', '$telepon', '$alamat', '$jumlah_donasi', '$metode_pembayaran')";
+    $query = "INSERT INTO donatur (nama, email, telepon, alamat, jumlah_donasi, metode_pembayaran, user_id) VALUES ('$nama', '$email', '$telepon', '$alamat', '$jumlah_donasi', '$metode_pembayaran', '$user_id')";
 
     if (mysqli_query($db, $query)) {
         echo "Terimakasih telah berdonasi";
@@ -22,10 +27,14 @@ if ( isset ($_POST["submit"])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Form Donasi</title>
+    <style>
+        /* CSS sama seperti yang Anda berikan di atas */
+    </style>
     <style>
         body {
   background-color: #2b2b2b;
@@ -83,6 +92,7 @@ button {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-decoration: none;
 }
 
 button:hover {
@@ -116,8 +126,13 @@ button:disabled {
 }
 
 .back-button a {
+  color: #4CAF50;
   text-decoration: none;
-  color: inherit;
+  display: inline-block;
+}
+
+.back-button:hover a {
+  color: #3e8e41;
 }
     </style>
 </head>
@@ -147,8 +162,8 @@ button:disabled {
         </select><br><br>
 
         <button type="submit" name="submit">Submit</button>
-        <button><a href="index.php">Back</a></button>
-        
+        <button type="back-button"><a href="index.php">Back</a></button>
     </form>
 </body>
 </html>
+

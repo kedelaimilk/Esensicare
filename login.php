@@ -20,19 +20,17 @@ if (isset($_POST["login"])) {
 
     $result = mysqli_query($mysqli, "SELECT * FROM users WHERE username= '$username' AND password='$password'");
 
-    // cek username
     if (mysqli_num_rows($result) > 0) {
         $data = mysqli_fetch_assoc($result);
-        $_SESSION["login"] = true; // Set session login
+        $_SESSION["login"] = true;
+        $_SESSION["user_id"] = $data['id']; // Simpan user_id di sesi
+        $_SESSION["username"] = $username;
+        $_SESSION["role"] = $data['role'];
+        $_SESSION["email"] = $data['email'];
+
         if ($data["role"] == "admin") {
-            $_SESSION["username"] = $username;
-            $_SESSION["role"] = 'admin';
-            $_SESSION["email"] = $data['email'];
             header("Location: admin/index.php");
         } else if ($data["role"] == "user") {
-            $_SESSION["username"] = $username;
-            $_SESSION["role"] = 'user';
-            $_SESSION["email"] = $data['email'];
             header("Location: index.php");
         } else {
             header("Location: login.php");
@@ -42,6 +40,7 @@ if (isset($_POST["login"])) {
         echo "<script>alert('Silahkan Masukkan Username/Password!')</script>";
     }
 }
+
 
 ?>
 
