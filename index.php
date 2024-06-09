@@ -23,27 +23,48 @@
         rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="index-style.css">
+    <style>
+        /* CSS */
+.logout-btn {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+    </style>
 
 </head>
 
 <body>
 
-    <nav class="navbar">
-        <a href="" class="navbar-logo">esensi<span>care</span></a>
-        <div class="navbar-nav">
-            <a href="#">Beranda</a>
-            <a href="#about">Tentang kami</a>
-            <a href="#layanan">Layanan</a>
-            <a href="#contact">Kontak Admin</a>
-            <a href="tentang-saya.php">Profil</a>
-            <a class="link-donasi" href="donasi.php">Donasi</a>
-        </div>
+    <!-- Navbar -->
+<nav class="navbar">
+    <a href="" class="navbar-logo">esensi<span>care</span></a>
+    <div class="navbar-nav">
+        <a href="#">Home</a>
+        <a href="#about">About us</a>
+        <a href="tabel-donasi.php">Information</a>
+        <a href="macam-donasi.php">Campaign</a>
+        <a class="link-donasi" href="donasi.php">Donate</a>
+    </div>
 
-        <div class="navbar-extra">
-            <a href="#" id="search"><i data-feather="search"></i></a>
-            <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
-        </div>
-    </nav>
+    <div class="navbar-extra">
+        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+        <a href="logout.php" class="logout-btn">Logout</a>
+    </div>
+</nav>
+
+
 
     <!-- Hero Section START -->
 
@@ -59,9 +80,6 @@
                 lainnya yang
                 melihat bahwa dunia saat ini mengharuskan setiap orang untuk menjadi changemaker – seseorang yang
                 melihat dirinya mampu menciptakan perubahan positif dalam skala besar.</p>
-            <form class="logout-btn"action="" method="POST">
-                
-            </form>
 
         </main>
 
@@ -189,7 +207,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="text" placeholder="Kritik & Saran" name="kritik" required>
                 </div>
                 <button type="submit" class="btn">Kirim pesan</button>
-                <button type="" name="logout"><a href="logout.php">Logout</a></button>
             </form>
         </div>
     </section>
@@ -218,26 +235,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </footer>
 
     <!-- Footer END -->
-
-
-
-
-
-
-
-
-
-
-<img src="" alt="">
-
-
-
-
-
-
-
-
-
 
     <!-- Fetaher Icons -->
     <script>
